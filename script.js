@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     taskLists.appendChild(newTask);
 
     taskInput.value = "";
-    setupEventListeners();
+    setupEventListeners(); // Re-setup event listeners after adding a new task
   };
 
   // Function to add a new task to the list
