@@ -3,8 +3,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const addTaskButton = document.getElementById("addTaskBtn");
   const taskLists = document.getElementById("task-lists");
 
-  // Function to render a single task
-  const renderTask = (taskText, index) => {
+  // Function to handle adding a new task
+  const addTask = () => {
+    const taskText = taskInput.value.trim();
+
+    if (taskText === "") {
+      alert("Please enter a task.");
+      return;
+    }
+
+    const NumberOfTasks = taskLists.querySelectorAll("li").length + 1;
+    const newTask = addNewTask(taskText, NumberOfTasks);
+    taskLists.appendChild(newTask);
+
+    taskInput.value = "";
+    setupEventListeners();
+  };
+
+  // Function to add a new task to the list
+  const addNewTask = (taskText, index) => {
     const newListItem = document.createElement("li");
     const newBtn = document.createElement("button");
 
@@ -19,21 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return newListItem;
   };
 
-  // Function to handle adding a new task
-  const addTask = () => {
-    const taskText = taskInput.value.trim();
-
-    if (taskText === "") {
-      alert("Please enter a task.");
-      return;
+  // Event handler for completing tasks
+  const toggleComplete = (event) => {
+    if (event.target.classList.contains("task-lists__item")) {
+      event.target.classList.toggle("completed");
     }
+  };
 
-    const NumberOfTasks = taskLists.querySelectorAll("li").length + 1;
-    const newTask = renderTask(taskText, NumberOfTasks);
-    taskLists.appendChild(newTask);
-
-    taskInput.value = ""; // Clear input
-    setupEventListeners(); // Reattach event listeners
+  // Event handler for deleting tasks
+  const deleteTask = (event) => {
+    event.stopPropagation();
+    event.target.closest("li").remove();
   };
 
   // Function to setup all event listeners
@@ -51,20 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Event handler for completing tasks
-  const toggleComplete = (event) => {
-    if (event.target.classList.contains("task-lists__item")) {
-      event.target.classList.toggle("completed");
-    }
-  };
-
-  // Event handler for deleting tasks
-  const deleteTask = (event) => {
-    event.stopPropagation();
-    event.target.closest("li").remove();
-  };
-
-  // Initial setup
+  // Initial setup after DOM content is loaded
   addTaskButton.addEventListener("click", addTask);
   setupEventListeners();
 });
