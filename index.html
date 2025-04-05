@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- 
+    TODO:
+    - Create a input field to add a task and a button to add the task
+    - Add button to create task
+    - click behavior to check/uncheck task
+    - add button to delete task
+    -->
+
+    <div class="container">
+      <h1>Todo List</h1>
+      <input type="text" id="task-input" placeholder="Add a new task..." />
+      <button id="addTaskBtn" class="add-btn">Add Task</button>
+      <div class="task-container">
+        <ul id="task-lists">
+          <li class="task-lists__item">
+            <label for="task1" id="task1" class="task-text">Task 1</label>
+            <button id="deleteTaskBtn-1" class="delete-btn">Delete ❌</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
